@@ -1,0 +1,10 @@
+---
+
+- name: Provision nginx
+  hosts: all
+  gather_facts: no
+  tasks:
+    # note: there is an apt module that would be preferable, but it requires python, which isn't includeed
+    # in the ubuntu base container. Fortunately, raw commands still work without it:
+    - name: install nginx
+      raw: export DEBIAN_FRONTEND=noninteractive && apt-get -y update && apt-get -y install nginx

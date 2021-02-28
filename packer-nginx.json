@@ -5,8 +5,20 @@
       "image": "ubuntu:latest",
       "commit": true,
       "changes": [
-        "ENTRYPOINT /bin/bash"
+        "ENTRYPOINT /usr/sbin/nginx -g \"daemon off;\""
       ]
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "ansible",
+      "user": "root",
+      "playbook_file": "provisioners/ubuntu.yml"
+    },
+    {
+      "type": "file",
+      "source": "conf/nginx.conf",
+      "destination": "/etc/nginx/nginx.conf"
     }
   ]
 }
