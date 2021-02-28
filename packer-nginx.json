@@ -1,8 +1,11 @@
 {
+  "variables": {
+      "distro": "ubuntu"
+  },
   "builders": [
     {
       "type": "docker",
-      "image": "ubuntu:latest",
+      "image": "{{user `distro`}}:latest",
       "commit": true,
       "changes": [
         "ENTRYPOINT /usr/sbin/nginx -g \"daemon off;\""
@@ -13,11 +16,11 @@
     {
       "type": "ansible",
       "user": "root",
-      "playbook_file": "provisioners/ubuntu.yml"
+      "playbook_file": "provisioners/{{user `distro`}}.yml"
     },
     {
       "type": "file",
-      "source": "conf/nginx.conf",
+      "source": "conf/{{user `distro`}}.conf",
       "destination": "/etc/nginx/nginx.conf"
     }
   ]

@@ -1,0 +1,11 @@
+---
+
+- name: Provision nginx
+  hosts: all
+  gather_facts: no
+  tasks:
+    - dnf:
+        update_cache: yes
+    - dnf:
+        name: nginx
+        state: present
