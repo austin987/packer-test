@@ -1,0 +1,12 @@
+{
+  "builders": [
+    {
+      "type": "docker",
+      "image": "ubuntu:latest",
+      "commit": true,
+      "changes": [
+        "ENTRYPOINT /bin/bash"
+      ]
+    }
+  ]
+}
