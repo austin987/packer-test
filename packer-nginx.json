@@ -23,5 +23,15 @@
       "source": "conf/{{user `distro`}}.conf",
       "destination": "/etc/nginx/nginx.conf"
     }
+  ],
+  "post-processors": [
+    [
+      {
+        "type": "docker-tag",
+        "repository":"austin987/nginx-{{user `distro`}}",
+        "tag": "latest"
+      },
+      "docker-push"
+    ]
   ]
 }
